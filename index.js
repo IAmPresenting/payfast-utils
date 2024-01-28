@@ -3,7 +3,7 @@ exports.tools           = require('./tools');
 exports.validate        = require('./validate');
 exports.transactions    = require('./transactions');
 exports.subscriptions   = require('./subscriptions');
-
+exports.onsite          = require('./onsite');
 //
 exports.ping = async (params) => {
     var headers = {};
