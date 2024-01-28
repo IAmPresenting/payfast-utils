@@ -1,25 +1,25 @@
 {
-  "name": "@payfast/core",
-  "version": "0.2.3",
+  "name": "@iampresenting/payfast-utils",
+  "version": "0.0.1",
   "description": "Easy to use node library to intergrate into payfast",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@iampresenting"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/payfast-api/core.git"
-  },
-  "bugs": {
-    "url": "https://github.com/payfast-api/core/issues"
+    "url": "https://github.com/IAmPresenting/payfast-utils"
   },
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
-  "homepage": "https://github.com/payfast-api/core",
+  "homepage": "https://github.com/IAmPresenting/payfast-utils",
   "keywrods": [
     "api",
     "payfast",
     "node"
   ],
-  "author": "claytoncc <clayton.constant@gmail.com> (http://claytoncc.io)",
+  "author": "IAP",
   "license": "MIT",
   "dependencies": {
     "md5": "^2.2.1",
