@@ -4,6 +4,7 @@ exports.validate        = require('./validate');
 exports.transactions    = require('./transactions');
 exports.subscriptions   = require('./subscriptions');
 
+//
 exports.ping = async (params) => {
     var headers = {};
     if (typeof(params.version) != "undefined") {
