@@ -1,4 +1,4 @@
-name: Publish Design Library
+name: Publish Payfasy utils
 
 on:
   push:
