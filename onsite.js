@@ -1,9 +1,8 @@
 import {generateSignature, dataToString} from './onsite-utils'
-
-const passPhrase = 'Itumeleng90s';
   
   export const generateUUID = async (req, res) => {
     try {
+        const passPhrase = req.headers['x-passphrase'];
         var myData = req.body;
         
         myData["signature"] = generateSignature(myData, passPhrase);
@@ -28,7 +27,6 @@ const passPhrase = 'Itumeleng90s';
 
         // Process the response data
         const uuid = data.uuid || null;
-        console.log(uuid);
 
         // Send the UUID back to the client
         res.json({ uuid });
