@@ -3,13 +3,19 @@ import {generateSignature, dataToString} from './onsite-utils'
   export const generateUUID = async (req, res) => {
     try {
         const passPhrase = req.headers['x-passphrase'];
+        const environment = req.headers['x-environment'];
+
         var myData = req.body;
         
         myData["signature"] = generateSignature(myData, passPhrase);
 
         const pfParamString = dataToString(myData);
 
-        const url = 'https://sandbox.payfast.co.za/onsite/process';
+        var url = 'https://sandbox.payfast.co.za/onsite/process';
+
+        if(environment === "production") {
+            url = 'https://payfast.co.za/onsite/process';
+        }
 
         const response = await fetch(url, {
             method: 'POST',
