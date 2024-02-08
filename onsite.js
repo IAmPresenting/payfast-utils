@@ -1,21 +1,51 @@
-import {generateSignature, dataToString} from './onsite-utils'
+import crypto from 'crypto'
+  
+ const dataToString = (dataArray) => {
+    // Convert your data array to a string
+    let pfParamString = "";
+    for (let key in dataArray) {
+      if(dataArray.hasOwnProperty(key)){pfParamString +=`${key}=${encodeURIComponent(dataArray[key].trim()).replace(/%20/g, "+")}&`;}
+    }
+    // Remove last ampersand
+    return pfParamString.slice(0, -1);
+  };
+
+const generateSignature = (data, passPhrase = null) => {
+    // Create parameter string
+    let pfOutput = "";
+    for (let key in data) {
+      if(data.hasOwnProperty(key)){
+        if (data[key] !== "") {
+          pfOutput +=`${key}=${encodeURIComponent(data[key].trim()).replace(/%20/g, "+")}&`
+        }
+      }
+    }
+  
+    // Remove last ampersand
+    let getString = pfOutput.slice(0, -1);
+    if (passPhrase !== null) {
+      getString +=`&passphrase=${encodeURIComponent(passPhrase.trim()).replace(/%20/g, "+")}`;
+    }
+  
+      return crypto.createHash("md5").update(getString).digest("hex");
+  }; 
   
   export const generateUUID = async (req, res) => {
     try {
+        console.log("In Generate")
         const passPhrase = req.headers['x-passphrase'];
-        const environment = req.headers['x-environment'];
-
+        console.log("headers: "+ passPhrase)
         var myData = req.body;
-        
+        console.log("body: "+ myData)
         myData["signature"] = generateSignature(myData, passPhrase);
 
         const pfParamString = dataToString(myData);
 
         var url = 'https://sandbox.payfast.co.za/onsite/process';
 
-        if(environment === "production") {
+        /*if(environment === "production") {
             url = 'https://payfast.co.za/onsite/process';
-        }
+        }*/
 
         const response = await fetch(url, {
             method: 'POST',
