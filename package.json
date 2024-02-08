@@ -1,6 +1,6 @@
 {
   "name": "@iampresenting/payfast-utils",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Easy to use node library to intergrate into payfast",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@iampresenting"

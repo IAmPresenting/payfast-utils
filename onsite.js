@@ -1,4 +1,4 @@
-import crypto from 'crypto'
+const crypto = require('crypto');
   
  const dataToString = (dataArray) => {
     // Convert your data array to a string
