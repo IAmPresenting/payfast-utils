@@ -30,7 +30,7 @@ const generateSignature = (data, passPhrase = null) => {
       return crypto.createHash("md5").update(getString).digest("hex");
   }; 
   
-  export const generateUUID = async (req, res) => {
+  const generateUUID = async (req, res) => {
     try {
         console.log("In Generate")
         const passPhrase = req.headers['x-passphrase'];
@@ -72,3 +72,5 @@ const generateSignature = (data, passPhrase = null) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+module.exports = { generateUUID };
